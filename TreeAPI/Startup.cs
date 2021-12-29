@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using TreeAPI.Context;
 
 namespace TreeAPI
 {
@@ -28,6 +29,7 @@ namespace TreeAPI
         {
 
             services.AddControllers();
+            services.AddDbContext<TreeDbContext>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TreeAPI", Version = "v1" });

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+ec35XuFj0FCn1nH8ZlQzaeqamg7mPA9TyMlf9jQyPlwYoY7BP3U66Q2DFgobvJy+UBnp0597kL9wqaw2HjclA==",
+  "dgSpecHash": "RQPo+2lLmwL4xHV8Nt24eViLBb5toi8IvDXCAwBqnYVIV67qjy5K9oIastWVpyyDzyLJLHKsYVy90XehTsagtA==",
   "success": true,
-  "projectFilePath": "e:\\Nauka\\Tree\\TreeAPI\\TreeAPI.csproj",
+  "projectFilePath": "E:\\Nauka\\Tree\\TreeAPI\\TreeAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mazi2\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
     "C:\\Users\\mazi2\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.6\\fluentvalidation.aspnetcore.10.3.6.nupkg.sha512",
