@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "TreeClient"
+  "defaultProject": "TreeClient",
+  "cli": {
+    "analytics": false
+  }
 }
