@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TreeAPI.Context;
 
 namespace TreeAPI.Migrations
 {
     [DbContext(typeof(TreeDbContext))]
-    partial class TreeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220101162434_AddUserModel")]
+    partial class AddUserModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

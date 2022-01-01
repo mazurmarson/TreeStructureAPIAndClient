@@ -7,6 +7,7 @@ namespace TreeAPI.Context
     {
         private string _connectionString = "Server=DESKTOP-A0EEVH8\\SQLEXPRESS;Database=TreeAPIDB;Trusted_Connection=True;MultipleActiveResultSets=true";
         public DbSet<Node> Nodes { get; set; }
+        public DbSet<User> Users {get; set;}
 
                 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
