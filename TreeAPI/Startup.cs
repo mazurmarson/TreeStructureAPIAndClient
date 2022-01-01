@@ -36,6 +36,7 @@ namespace TreeAPI
             services.AddDbContext<TreeDbContext>();
             services.AddScoped<INodeService, NodeService>();
             services.AddAutoMapper(this.GetType().Assembly);
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TreeAPI", Version = "v1" });
@@ -53,7 +54,7 @@ namespace TreeAPI
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseRouting();
 
             app.UseAuthorization();

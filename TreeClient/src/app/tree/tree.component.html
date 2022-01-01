@@ -1,0 +1,47 @@
+<p>
+Aktualny wezeł {{ currentId }}
+<br/>
+<button (click)="deleteTree()"  class="btn btn-danger">Usuń aktualny węzeł</button>
+  </p>
+
+ <form #changeParentForm="ngForm"  (ngSubmit)="changeParent()">
+  <div class="form-group">
+    Id nowego rodzica:
+    <input type="Text" class="form-control" placeholder="Data dodania" name="endDate"  [(ngModel)]="newParrentId">
+
+    <div class="form-group text-center my-4">
+      <button class="btn btn-success" type="submit">Zmień rodzica</button>
+
+
+    </div>
+</div>
+
+</form>
+
+
+  <h1>Tree</h1>
+<ul>
+  <ng-template #recursiveList let-tree>
+    <li *ngFor="let item of tree" (click)="listClick($event, item)">
+      ID:{{item.id}} (Value:{{item.value}})
+      <ul *ngIf="item.childs.length > 0 && item.showTree"   [ngClass]="{ 'subtree': selectedItem == item }">
+        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.childs }"></ng-container>
+      </ul>
+    </li>
+  </ng-template>
+  <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: tree }"></ng-container>
+</ul>
+
+<form #addNewNodeForm="ngForm"  (ngSubmit)="addNewNode()">
+  <div class="form-group">
+    Wartośc nowego węzłą:
+    <input type="Text" class="form-control" placeholder="Wartość nowego węzła" name="Value"  [(ngModel)]="newNode.Value">
+
+    <div class="form-group text-center my-4">
+      <button class="btn btn-success" type="submit">Dodaj</button>
+
+
+    </div>
+</div>
+
+</form>

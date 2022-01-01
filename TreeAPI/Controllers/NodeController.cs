@@ -31,7 +31,7 @@ namespace TreeAPI.Controllers
             return Ok();
         }
 
-        [HttpPut("{nodeId}/{newParentId}")]
+        [HttpPost("{nodeId}/{newParentId}")]
         public async Task<IActionResult> ChangeParent(int nodeId, int newParentId)
         {
             await _nodeService.ChangeParent(nodeId, newParentId);
