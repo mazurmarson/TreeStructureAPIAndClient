@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TreeAPI.Models;
 using TreeAPI.Services;
@@ -15,14 +16,14 @@ namespace TreeAPI.Controllers
     {
             _nodeService = nodeService;
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetTree()
         {
             var tree = await _nodeService.GetTree();
             return Ok(tree);
         }
-
+        [Authorize(Roles ="admin")]
         [HttpPost]
         public async Task<IActionResult> CreateNode(Node node)
         {
@@ -30,7 +31,7 @@ namespace TreeAPI.Controllers
 
             return Ok();
         }
-
+        [Authorize(Roles ="admin")]
         [HttpPost("{nodeId}/{newParentId}")]
         public async Task<IActionResult> ChangeParent(int nodeId, int newParentId)
         {
@@ -38,7 +39,7 @@ namespace TreeAPI.Controllers
 
             return Ok();
         }
-
+        [Authorize(Roles ="admin")]
         [HttpDelete("{nodeId}")]
         public async Task<IActionResult> DeleteNode(int nodeId)
         {

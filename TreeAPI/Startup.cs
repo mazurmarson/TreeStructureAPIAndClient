@@ -68,9 +68,9 @@ namespace TreeAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TreeAPI v1"));
             }
-
+              app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseHttpsRedirection();
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+          app.UseAuthentication();
             app.UseRouting();
 
             app.UseAuthorization();

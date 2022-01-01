@@ -5,20 +5,50 @@ import { AppComponent } from './app.component';
 import { TreeComponent } from './tree/tree.component';
 import { NodeService } from './_services/Node.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { JwtModule } from '@auth0/angular-jwt';
+import { NavComponent } from './nav/nav.component';
+import { AuthService } from './_services/auth.service';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes';
+
+export function tokenGetter()
+{
+  return localStorage.getItem('token');
+}
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TreeComponent
-  ],
+    TreeComponent,
+      NavComponent,
+      RegisterComponent,
+      HomeComponent
+   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    JwtModule.forRoot(
+      {
+        config: {
+          tokenGetter,
+          allowedDomains: ['localhost:5001'],
+          disallowedRoutes: ['localhost:5001/api/auth']
+        }
+      }
+    ),
+
+    RouterModule.forRoot(appRoutes),
+
   ],
   providers: [
-    NodeService
+    NodeService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
