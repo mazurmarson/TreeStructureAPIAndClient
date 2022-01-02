@@ -16,6 +16,8 @@ namespace TreeAPI.Controllers
     {
             _nodeService = nodeService;
         }
+        
+        
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetTree()
@@ -23,6 +25,20 @@ namespace TreeAPI.Controllers
             var tree = await _nodeService.GetTree();
             return Ok(tree);
         }
+
+        [Authorize]
+        [HttpGet("sort/{sortBy}")]
+        public async Task<IActionResult> GetTreeSorted(int sortBy)
+        {
+            if(sortBy == 0 || sortBy == 1)
+            {
+                    var tree = await _nodeService.GetTreeSorted(sortBy);
+                    return Ok(tree);
+            }
+            return BadRequest();
+
+        }
+
         [Authorize(Roles ="admin")]
         [HttpPost]
         public async Task<IActionResult> CreateNode(Node node)

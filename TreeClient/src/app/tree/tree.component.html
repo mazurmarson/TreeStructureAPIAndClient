@@ -20,6 +20,8 @@ Aktualny wezeł {{ currentId }}
 
 
   <h1>Tree</h1>
+  <button class="btn btn-primary" [class.btn-dark]="sortBy==0" (click)="this.sort(0)">Identyfikator</button>
+  <button class="btn btn-primary" [class.btn-dark]="sortBy==1" (click)="this.sort(1)">Wartość</button>
 <ul>
   <ng-template #recursiveList let-tree>
     <li *ngFor="let item of tree" (click)="listClick($event, item)">

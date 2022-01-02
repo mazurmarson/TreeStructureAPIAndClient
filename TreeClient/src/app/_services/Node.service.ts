@@ -16,6 +16,11 @@ getTree()
   return this.http.get(this.baseUrl);
 }
 
+getTreeSorted(sortBy:number)
+{
+  return this.http.get(this.baseUrl+'/sort/'+sortBy);
+}
+
 deleteTree(id:number)
 {
   return this.http.delete(this.baseUrl +'/' + id);

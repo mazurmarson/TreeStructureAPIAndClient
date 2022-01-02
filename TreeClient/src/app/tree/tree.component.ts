@@ -16,6 +16,7 @@ export class TreeComponent implements OnInit {
   currentId = 0;
   newParrentId: any;
   newNode: any = {};
+  sortBy = 0;
 
   constructor(private nodeService: NodeService) { }
 
@@ -76,6 +77,17 @@ listClick(event, newValue) {
     });
     this.loadTree();
 
+  }
+
+  sort(sortBy:number)
+  {
+    this.sortBy = sortBy;
+    this.nodeService.getTreeSorted(sortBy).subscribe( (response : any ) => {
+      this.tree = response;
+      console.log(this.tree);
+    }, error => {
+      console.log('Nie udało się pobrać drzewa');
+    } );
   }
 
 }

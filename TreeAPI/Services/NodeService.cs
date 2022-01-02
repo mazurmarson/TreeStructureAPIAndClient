@@ -15,6 +15,7 @@ namespace TreeAPI.Services
         Task<Node> CreateNode(Node node);
         Task<Node> ChangeParent(int NoteId, int NewParentId);
         Task<IList<NodeWithChilds>> GetTree();
+         Task<IList<NodeWithChilds>> GetTreeSorted(int SortBy);
         Task DeleteTree();
         Task DeleteNode(int NodeId);
         
@@ -106,65 +107,19 @@ namespace TreeAPI.Services
             return nodesWithChilds.BuilldTree(); 
         }
 
-        // public async Task<List<NodeWithChilds>> GetNodes()
-        // {
-        //     var root = await _treeDbContext.Nodes.FirstOrDefaultAsync(x => x.ParentId == null);
-        //     List<NodeWithChilds> nodes = new List<NodeWithChilds>();
-        //     NodeWithChilds rootWithChilds = new NodeWithChilds{
-        //         Id = root.Id,
-        //         Value = root.Value
-        //     } ;
-        //     LoadChilds(rootWithChilds ,ref nodes);
+        public async Task<IList<NodeWithChilds>> GetTreeSorted(int SortBy)
+        {
+            if(SortBy == 1)
+            {
+                var nodesSortedByValue = await _treeDbContext.Nodes.OrderBy(x => x.Value).ToListAsync();
+                 var nodesWithChildsSortedByValue = _mapper.Map<List<NodeWithChilds>>(nodesSortedByValue); 
 
-        //     return nodes;
+                return nodesWithChildsSortedByValue.BuilldTree(); 
+            }
+                var nodesSortedById = await _treeDbContext.Nodes.OrderBy(x => x.Id).ToListAsync();
+                 var nodesWithChildsSortedById = _mapper.Map<List<NodeWithChilds>>(nodesSortedById); 
 
-        // }
-
-        // private void LoadChilds(NodeWithChilds parent ,ref List<NodeWithChilds> nodes)
-        // {
-            
-        //     nodes.Add(parent);
-        //     var childs = _treeDbContext.Nodes.Where(x => x.ParentId == parent.Id);
-
-        //     foreach(var node in childs)
-        //     {
-        //         parent.Childs.Add(node);
-        //         NodeWithChilds nodeWithChilds = new NodeWithChilds{
-        //             Id = node.Id,
-        //             Value = node.Id,
-        //             ParentId = node.ParentId
-        //         };
-        //         LoadChilds(nodeWithChilds, ref nodes);
-        //     }
-        // }
-
-        // public void BindTree(List<Node> nodes, Node node, int parentId)
-        // {
-
-        // }
-
-        // public async Task<NodeWithChilds> CreateTree()
-        // {
-        //     var root = await _treeDbContext.Nodes.FirstOrDefaultAsync(x => x.ParentId == null);
-        //     var rootWithChilds = _mapper.Map<NodeWithChilds>(root);
-
-        //     LoadChilds(ref rootWithChilds);
-
-        //     return rootWithChilds;
-        // }
-
-        // public void LoadChilds(ref NodeWithChilds nodeWithChilds)
-        // {
-        //     int parentId = nodeWithChilds.Id;
-        //     var childs =  _treeDbContext.Nodes.Where(x => x.ParentId == parentId).ToList();
-        //     if(nodeWithChilds.ParentId != null)
-        //         nodeWithChilds.Childs.Add(nodeWithChilds);
-
-        //     foreach(var child in childs)
-        //     {
-        //         var childWithChilds = _mapper.Map<NodeWithChilds>(child);
-        //         LoadChilds(ref childWithChilds);
-        //     }
-        // }
+                return nodesWithChildsSortedById.BuilldTree(); 
+        }
     }
 }
