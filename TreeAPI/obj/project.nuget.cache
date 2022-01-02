@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1+yU5uCo9gt3lksXBdJ5fzsHcQQc6qflo9kGL6aNe0JvLrOJM3o3BRamj5zzckwU8TIHI2qTiHoi8eZI5Hs6pg==",
+  "dgSpecHash": "KOZtGBYrMQeDItP7x9Cl4S6LHQriVROh51DsutZ9D4fv9Asdwe1kAT6JzPoB/lUsLELTcwiY/SeojVM65OkbMg==",
   "success": true,
-  "projectFilePath": "E:\\Nauka\\Tree\\treeAPI\\TreeAPI.csproj",
+  "projectFilePath": "E:\\Nauka\\Tree\\treeapi\\TreeAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mazi2\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\mazi2\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

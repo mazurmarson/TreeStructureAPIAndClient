@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TreeAPI.Context;
+using TreeAPI.Dtos;
 using TreeAPI.Helpers;
 using TreeAPI.Models;
 
@@ -12,7 +13,7 @@ namespace TreeAPI.Services
     public interface INodeService
     {
 
-        Task<Node> CreateNode(Node node);
+        Task<Node> CreateNode(AddNodeDto node);
         Task<Node> ChangeParent(int NoteId, int NewParentId);
         Task<IList<NodeWithChilds>> GetTree();
          Task<IList<NodeWithChilds>> GetTreeSorted(int SortBy);
@@ -51,31 +52,36 @@ namespace TreeAPI.Services
             return node;
         }
 
-        public async Task<Node> CreateNode(Node node)
+        public async Task<Node> CreateNode(AddNodeDto nodeDto)
         {
+            var node = new Node{
+                Value = nodeDto.Value,
+                ParentId = nodeDto.ParentId
+            };
            
-            if(node.ParentId == null)
-            {
-                if(_treeDbContext.Nodes.Any())
-                {
-                    throw new System.NotImplementedException();
-                }
+            // if(node.ParentId == null)
+            // {
+            //     if(_treeDbContext.Nodes.Any())
+            //     {
+            //         throw new System.NotImplementedException();
+            //     }
 
-                _treeDbContext.Nodes.Add(node);
-                await _treeDbContext.SaveChangesAsync();
+            //     _treeDbContext.Nodes.Add(node);
+            //     await _treeDbContext.SaveChangesAsync();
 
-                return node;
-            }
+            //     return node;
+            // }
 
-            if(!_treeDbContext.Nodes.Any(x => x.Id == node.ParentId))
-            {
-                 throw new System.NotImplementedException();
-            }
+            // if(!_treeDbContext.Nodes.Any(x => x.Id == node.ParentId))
+            // {
+            //      throw new System.NotImplementedException();
+            // }
            
-            if(_treeDbContext.Nodes.Any(x => x.Value == node.Value))
-            {
-                throw new System.NotImplementedException();
-            }
+            // if(_treeDbContext.Nodes.Any(x => x.Value == node.Value))
+            // {
+            //     throw new System.NotImplementedException();
+            // }
+
             
             _treeDbContext.Nodes.Add(node);
             await _treeDbContext.SaveChangesAsync();

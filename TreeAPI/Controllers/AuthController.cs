@@ -33,6 +33,7 @@ namespace TreeAPI.Controllers
             userRegisterDto.Name = userRegisterDto.Name.ToLower();
             if (await _service.UserIsExist(userRegisterDto.Name))
             {
+            //    throw new Exception("Blad reczny");
                 return BadRequest("Taki użytkownik już istnieje");
             }
             var userToCreate = new User

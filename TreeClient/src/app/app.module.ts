@@ -14,6 +14,9 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
+
+
 
 export function tokenGetter()
 {
@@ -50,7 +53,12 @@ export function tokenGetter()
   providers: [
     NodeService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    ErrorInterceptorProvider
+
+
+
+
   ],
   bootstrap: [AppComponent]
 })

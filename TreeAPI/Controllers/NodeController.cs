@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TreeAPI.Dtos;
 using TreeAPI.Models;
 using TreeAPI.Services;
 
@@ -41,7 +42,7 @@ namespace TreeAPI.Controllers
 
         [Authorize(Roles ="admin")]
         [HttpPost]
-        public async Task<IActionResult> CreateNode(Node node)
+        public async Task<IActionResult> CreateNode(AddNodeDto node)
         {
             await _nodeService.CreateNode(node);
 
