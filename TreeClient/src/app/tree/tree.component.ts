@@ -90,4 +90,10 @@ listClick(event, newValue) {
     } );
   }
 
+  resetCurrentNodeValue()
+  {
+    this.currentId = null;
+    console.log(this.currentId);
+  }
+
 }

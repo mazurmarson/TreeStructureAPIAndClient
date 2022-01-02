@@ -2,6 +2,7 @@
 Aktualny wezeł {{ currentId }}
 <br/>
 <button (click)="deleteTree()"  class="btn btn-danger">Usuń aktualny węzeł</button>
+<button (click)="resetCurrentNodeValue()"  class="btn btn-danger">Odznacz aktualny węzeł</button>
   </p>
 
  <form #changeParentForm="ngForm"  (ngSubmit)="changeParent()">
@@ -25,7 +26,7 @@ Aktualny wezeł {{ currentId }}
 <ul>
   <ng-template #recursiveList let-tree>
     <li *ngFor="let item of tree" (click)="listClick($event, item)">
-      ID:{{item.id}} (Value:{{item.value}})
+     <p [class.text-primary]="item.childs.length > 0">ID:{{item.id}} (Value:{{item.value}})</p>
       <ul *ngIf="item.childs.length > 0 && item.showTree"   [ngClass]="{ 'subtree': selectedItem == item }">
         <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.childs }"></ng-container>
       </ul>
