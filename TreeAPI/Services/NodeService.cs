@@ -93,7 +93,7 @@ namespace TreeAPI.Services
         public async Task DeleteNode(int NodeId)
         {
            var node = await _treeDbContext.Nodes.FirstOrDefaultAsync(x => x.Id == NodeId);
-
+            await RemoveChildren(NodeId);
            _treeDbContext.Remove(node);
            await _treeDbContext.SaveChangesAsync();
         }
@@ -126,6 +126,18 @@ namespace TreeAPI.Services
                  var nodesWithChildsSortedById = _mapper.Map<List<NodeWithChilds>>(nodesSortedById); 
 
                 return nodesWithChildsSortedById.BuilldTree(); 
+        }
+
+        
+        public async Task RemoveChildren(int id)
+        {
+            var children = await _treeDbContext.Nodes.Where(x => x.ParentId == id).ToListAsync();
+            foreach(var child in children)
+            {
+                await RemoveChildren(child.Id);
+                _treeDbContext.Remove(child);
+                await _treeDbContext.SaveChangesAsync();
+            }
         }
     }
 }
