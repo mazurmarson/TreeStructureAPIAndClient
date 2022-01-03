@@ -8,14 +8,20 @@ Aktualny wezeł {{ currentId }}
  <form #changeParentForm="ngForm"  (ngSubmit)="changeParent()">
   <div class="form-group">
     Id nowego rodzica:
-    <input type="Text" class="form-control" placeholder="Data dodania" name="endDate"  [(ngModel)]="newParrentId">
+    <input  #parrentId="ngModel" pattern="^[1-9][0-9]*$" required type="Text" class="form-control" placeholder="Data dodania" name="endDate"  [(ngModel)]="newParrentId">
 
+    <div style="color:red;" *ngIf="parrentId.dirty">
+        <p *ngIf="parrentId.errors?.pattern">Wartości muszą liczbą i być wyższe niż zero!</p>
+        <p *ngIf="parrentId.errors?.required">Jeśli chcesz dodać węzeł, wartość jest wymagana</p>
+
+       </div>
     <div class="form-group text-center my-4">
-      <button class="btn btn-success" type="submit">Zmień rodzica</button>
+      <button [disabled]="changeParentForm.invalid" class="btn btn-success" type="submit">Zmień rodzica</button>
+
 
 
     </div>
-</div>
+    </div>
 
 </form>
 
@@ -38,10 +44,14 @@ Aktualny wezeł {{ currentId }}
 <form #addNewNodeForm="ngForm"  (ngSubmit)="addNewNode()">
   <div class="form-group">
     Wartośc nowego węzłą:
-    <input type="Text" class="form-control" placeholder="Wartość nowego węzła" name="Value"  [(ngModel)]="newNode.Value">
+    <input required=""  #value="ngModel"   pattern="^[1-9][0-9]*$" type="Text" class="form-control" placeholder="Wartość nowego węzła" name="Value"  [(ngModel)]="newNode.Value">
+      <div style="color:red;" *ngIf="value.dirty">
+      <p *ngIf="value.errors?.pattern">Wartości muszą liczbą i być wyższe niż zero!</p>
+      <p *ngIf="value.errors?.required">Jeśli chcesz dodać węzeł, wartość jest wymagana</p>
 
+      </div>
     <div class="form-group text-center my-4">
-      <button class="btn btn-success" type="submit">Dodaj</button>
+      <button [disabled]="addNewNodeForm.invalid" class="btn btn-success" type="submit">Dodaj</button>
 
 
     </div>

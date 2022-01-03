@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Nauka\\Tree\\treeapi\\TreeAPI.csproj": {}
+    "E:\\Nauka\\Tree\\TreeAPI\\TreeAPI.csproj": {}
   },
   "projects": {
-    "E:\\Nauka\\Tree\\treeapi\\TreeAPI.csproj": {
+    "E:\\Nauka\\Tree\\TreeAPI\\TreeAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Nauka\\Tree\\treeapi\\TreeAPI.csproj",
+        "projectUniqueName": "E:\\Nauka\\Tree\\TreeAPI\\TreeAPI.csproj",
         "projectName": "TreeAPI",
-        "projectPath": "E:\\Nauka\\Tree\\treeapi\\TreeAPI.csproj",
+        "projectPath": "E:\\Nauka\\Tree\\TreeAPI\\TreeAPI.csproj",
         "packagesPath": "C:\\Users\\mazi2\\.nuget\\packages\\",
-        "outputPath": "E:\\Nauka\\Tree\\treeapi\\obj\\",
+        "outputPath": "E:\\Nauka\\Tree\\TreeAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
