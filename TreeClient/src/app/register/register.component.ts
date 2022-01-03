@@ -10,6 +10,7 @@ export class RegisterComponent implements OnInit {
 
 
   model: any ={};
+  hero: any={};
 
   constructor(private authService: AuthService) { }
 
@@ -24,6 +25,11 @@ export class RegisterComponent implements OnInit {
       alert(error);
       console.log(error);
     });
+  }
+
+  passwordMatch()
+  {
+    return this.model.password == this.model.confirmPassword;
   }
 
 }

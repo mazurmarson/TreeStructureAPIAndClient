@@ -16,14 +16,23 @@
 
                   <div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			                <input type="text" name="mail" id="mail" class="form-control input-sm" placeholder="email" [(ngModel)]="model.mail">
-			    					</div>
+			                <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  #mail="ngModel"  type="mail" name="mail" id="mail" class="form-control input-sm" placeholder="Mail" required [(ngModel)]="model.mail">
+							<div style="color:red;" *ngIf="mail.touched">
+								<p *ngIf="mail.errors?.required">Pole jest wymagane!</p>
+								<p *ngIf="mail.errors?.pattern">Niepoprawny mail!</p>
+							  </div>
+
+                    </div>
 			    				</div>
 
                   <div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			    						<input type="text" name="name" id="name" class="form-control input-sm" placeholder="Name" [(ngModel)]="model.Name">
-			    					</div>
+			    						<input  #name="ngModel" required type="text" name="name" id="name" class="form-control input-sm" placeholder="Name" [(ngModel)]="model.Name">
+										<div style="color:red;" *ngIf="mail.touched">
+											<p *ngIf="name.errors?.required">Pole jest wymagane!</p>
+
+										  </div>
+									</div>
 			    				</div>
 			    			</div>
 
@@ -32,17 +41,27 @@
 			    			<div class="row">
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password" [(ngModel)]="model.password">
-			    					</div>
+			    						<input [minlength]="6" #password="ngModel" required type="password" name="password" id="password" class="form-control input-sm" placeholder="Password" [(ngModel)]="model.password">
+										<div style="color:red;" *ngIf="mail.touched">
+											<p *ngIf="password.errors?.required">Pole jest wymagane!</p>
+											<p *ngIf="password.errors?.minlength">Minimum 6 znaków!</p>
+										  </div>
+									</div>
 			    				</div>
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			    						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password" [(ngModel)]="model.confirmPassword">
-			    					</div>
+			    						<input  #confirmPassword="ngModel"  type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password" [(ngModel)]="model.confirmPassword">
+                      <div style="color:red;" *ngIf="mail.touched">
+                        <p *ngIf="!this.passwordMatch()">Hasła nie są równe!</p>
+
+                        </div>
+									</div>
 			    				</div>
 			    			</div>
 
-			    			<input type="submit" value="Register" class="btn btn-info btn-block">
+			    			<input [disabled]="registerForm.invalid" type="submit" value="Register" class="btn btn-info btn-block">
+
+
 
 			    		</form>
 			    	</div>
