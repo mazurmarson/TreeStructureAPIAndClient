@@ -37,12 +37,12 @@ namespace TreeAPI.Services
         {
             if(!_treeDbContext.Nodes.Any(x => x.Id == NoteId))
             {
-                throw new System.NotImplementedException(); //Wezeł o wskazanym ID nie istnieje
+                throw new System.NotImplementedException(); 
             }
 
             if(!_treeDbContext.Nodes.Any(x => x.Id == NewParentId))
             {
-                 throw new System.NotImplementedException(); //Wezeł rodzic o wskazanym ID nie istnieje
+                 throw new System.NotImplementedException(); 
             }
             var node = await _treeDbContext.Nodes.Where(x => x.Id == NoteId).FirstOrDefaultAsync();
             node.ParentId = NewParentId;
@@ -59,28 +59,6 @@ namespace TreeAPI.Services
                 ParentId = nodeDto.ParentId
             };
            
-            // if(node.ParentId == null)
-            // {
-            //     if(_treeDbContext.Nodes.Any())
-            //     {
-            //         throw new System.NotImplementedException();
-            //     }
-
-            //     _treeDbContext.Nodes.Add(node);
-            //     await _treeDbContext.SaveChangesAsync();
-
-            //     return node;
-            // }
-
-            // if(!_treeDbContext.Nodes.Any(x => x.Id == node.ParentId))
-            // {
-            //      throw new System.NotImplementedException();
-            // }
-           
-            // if(_treeDbContext.Nodes.Any(x => x.Value == node.Value))
-            // {
-            //     throw new System.NotImplementedException();
-            // }
 
             
             _treeDbContext.Nodes.Add(node);
@@ -105,8 +83,6 @@ namespace TreeAPI.Services
 
         public async Task<IList<NodeWithChilds>> GetTree()
         {
-           // var rootNode = await _treeDbContext.Nodes.FirstOrDefaultAsync(x => x.ParentId == null);
-         //  var tree = await _treeDbContext.Nodes.ToListAsync();
           var nodes = await _treeDbContext.Nodes.ToListAsync();
           var nodesWithChilds = _mapper.Map<List<NodeWithChilds>>(nodes); 
 

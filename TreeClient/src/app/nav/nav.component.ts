@@ -25,7 +25,7 @@ export class NavComponent implements OnInit {
       console.log("Zalogowałeś się");
 
     }, error => {
-      console.log('Wystąpił błąd logowania');
+      alert('Wystąpił błąd logowania');
     }, () => {
       this.router.navigate(['/tree']);
     });
@@ -38,7 +38,7 @@ export class NavComponent implements OnInit {
   logout()
   {
     localStorage.removeItem('token');
-    console.log('Wylogowano');
+    alert('Wylogowano');
     this.router.navigate(['/home']);
   }
 
