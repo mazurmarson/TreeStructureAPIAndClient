@@ -77,7 +77,7 @@ listClick(event, newValue) {
       console.log(response);
       this.loadTree();
     }, error => {
-      console.log('Nie udało sie dodać nowego węzła')
+      alert(error);
     });
 
 

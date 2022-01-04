@@ -49,6 +49,7 @@ namespace TreeAPI
             services.AddScoped<IAuthService, AuthService>();
             services.AddAutoMapper(this.GetType().Assembly);
             services.AddScoped<IValidator<UserRegisterDto>, RegisterUserDtoValidator>();
+            services.AddScoped<IValidator<AddNodeDto>, AddNodeDtoValidator>();
             services.AddCors();
                         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                         .AddJwtBearer(options =>

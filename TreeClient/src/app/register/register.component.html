@@ -1,17 +1,14 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
 <div class="container">
-        <div class="row centered-form">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-        	<div class="panel panel-default">
-        		<div class="panel-heading">
-			    		<h3 class="panel-title">Rejestracja <small>Możesz zdać już teraz!</small></h3>
-			 			</div>
-			 			<div class="panel-body">
-			    		<form role="form" #registerForm="ngForm" (ngSubmit)="register()">
+
+
+
+  <div class="row justify-content-center">
+    <div class="text-center">
+
+    <div  style="padding-top: 50px;">
+     <h1>Rejestracja</h1>
+      <div class="border border-dark" style="padding: 50px;">
+			    		<form role="form" #registerForm="ngForm" (ngSubmit)="register(); registerForm.reset()">
 			    			<div class="row">
 
                   <div class="col-xs-6 col-sm-6 col-md-6">
@@ -59,13 +56,13 @@
 			    				</div>
 			    			</div>
 
-			    			<input [disabled]="registerForm.invalid" type="submit" value="Register" class="btn btn-info btn-block">
+			    			<input [disabled]="registerForm.invalid" type="submit" value="Zarejestruj" class="btn btn-info btn-block">
 
 
 
 			    		</form>
-			    	</div>
-	    		</div>
-    		</div>
-    	</div>
-    </div>
+            </div>
+            </div>
+          </div>
+            </div>
+          </div>

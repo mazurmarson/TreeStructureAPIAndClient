@@ -51,7 +51,7 @@ editProfileByWorker(model: any)
 loggedIn()
 {
   const token = localStorage.getItem('token');
-  console.log(token);
+
   return !this.jwtHelper.isTokenExpired(token);
 }
 

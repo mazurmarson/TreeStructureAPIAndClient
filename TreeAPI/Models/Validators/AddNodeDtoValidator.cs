@@ -21,7 +21,7 @@ namespace TreeAPI.Models.Validators
             RuleFor(x => x.ParentId).Custom((value, context) => {
                 if(value != null)
                 {
-                    var parentExist = dbContext.Nodes.Any(x => x.ParentId == value);
+                    var parentExist = dbContext.Nodes.Any(x => x.Id == value);
                     if(!parentExist)
                     {
                         context.AddFailure("ParentId", "Wprowadzony rodzic nie istnieje");

@@ -1,8 +1,11 @@
+<div  class="container" style="padding: 50px; font-weight: bold;">
+  <div style="padding: 20px;" class="border border-dark">
+<h1 style="text-align: center;"> Zarządzanie drzewami</h1>
 <div *ngIf="this.checkRole() == 'admin'">
 <p>
 Aktualny wezeł {{ currentId }}
 <br/>
-<button (click)="deleteNode()"  class="btn btn-danger">Usuń aktualny węzeł</button>
+<button style="margin-right: 10px;" (click)="deleteNode()"  class="btn btn-danger">Usuń aktualny węzeł</button>
 <button (click)="resetCurrentNodeValue()"  class="btn btn-danger">Odznacz aktualny węzeł</button>
   </p>
 
@@ -27,21 +30,6 @@ Aktualny wezeł {{ currentId }}
 </form>
 </div>
 
-  <h1>Tree</h1>
-  <button class="btn btn-primary" [class.btn-dark]="sortBy==0" (click)="this.sort(0)">Identyfikator</button>
-  <button class="btn btn-primary" [class.btn-dark]="sortBy==1" (click)="this.sort(1)">Wartość</button>
-<ul>
-  <ng-template #recursiveList let-tree>
-    <li *ngFor="let item of tree" (click)="listClick($event, item)">
-     <p [class.text-primary]="item.childs.length > 0">ID:{{item.id}} (Value:{{item.value}})</p>
-      <ul *ngIf="item.childs.length > 0 && item.showTree"   [ngClass]="{ 'subtree': selectedItem == item }">
-        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.childs }"></ng-container>
-      </ul>
-    </li>
-  </ng-template>
-  <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: tree }"></ng-container>
-</ul>
-
 <div *ngIf="this.checkRole() == 'admin'">
 <form #addNewNodeForm="ngForm"  (ngSubmit)="addNewNode()">
   <div class="form-group">
@@ -61,3 +49,22 @@ Aktualny wezeł {{ currentId }}
 
 </form>
  </div>
+
+ <div>
+  <h1>Drzewa</h1>
+  <button class="btn btn-primary" [class.btn-dark]="sortBy==0" (click)="this.sort(0)">Identyfikator</button>
+  <button class="btn btn-primary" [class.btn-dark]="sortBy==1" (click)="this.sort(1)">Wartość</button>
+<ul>
+  <ng-template #recursiveList let-tree>
+    <li *ngFor="let item of tree" (click)="listClick($event, item)">
+     <p [class.text-primary]="item.childs.length > 0">ID:{{item.id}} (Value:{{item.value}})</p>
+      <ul *ngIf="item.childs.length > 0 && item.showTree"   [ngClass]="{ 'subtree': selectedItem == item }">
+        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.childs }"></ng-container>
+      </ul>
+    </li>
+  </ng-template>
+  <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: tree }"></ng-container>
+</ul>
+</div>
+</div>
+</div>
