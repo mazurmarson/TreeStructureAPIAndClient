@@ -1,27 +1,27 @@
 <nav class="navbar navbar-expand-md navbar-dark  bg-dark">
-  <a class="navbar-brand" href="#">Tree</a>
+
 
 
 
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" [routerLink]="['home']">Strona główna</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="loggedIn()" class="nav-item">
         <a class="nav-link" [routerLink]="['tree']">Drzewo</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="!loggedIn()" class="nav-item">
         <a class="nav-link" [routerLink]="['register']">Rejestracja</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="loggedIn()" class="nav-item">
         <a class="nav-link" (click)="logout()">Wyloguj</a>
       </li>
 
 
     </ul>
 
-    <div *ngIf="loggedIn()" class="dropdown">
-      <a class=" dropdown-toggle text-light" >
+    <div *ngIf="loggedIn()">
+      <a class="text-light" >
         Witaj użytkowniku {{ authService.decodedToken?.unique_name | titlecase }}
       </a>
 

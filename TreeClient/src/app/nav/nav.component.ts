@@ -11,16 +11,19 @@ export class NavComponent implements OnInit {
 
   model: any = {};
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.loggedIn();
 
   }
+
 
   login()
   {
     this.authService.login(this.model).subscribe(x => {
       console.log("Zalogowałeś się");
+
     }, error => {
       console.log('Wystąpił błąd logowania');
     }, () => {
@@ -29,8 +32,7 @@ export class NavComponent implements OnInit {
   }
 
   loggedIn(){
-    const token = localStorage.getItem('token');
-    return !!token;
+    return this.authService.loggedIn();
   }
 
   logout()
@@ -39,5 +41,9 @@ export class NavComponent implements OnInit {
     console.log('Wylogowano');
     this.router.navigate(['/home']);
   }
+
+
+
+
 
 }

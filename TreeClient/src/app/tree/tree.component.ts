@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../_services/auth.service';
 import { NodeService } from '../_services/Node.service';
 
 
@@ -13,16 +14,16 @@ export class TreeComponent implements OnInit {
 
   tree: any;
   selectedItem: any;
-  currentId = 0;
+  currentId = null;
   newParrentId: any;
   newNode: any = {};
   sortBy = 0;
 
-  constructor(private nodeService: NodeService) { }
+  constructor(private nodeService: NodeService, private authService: AuthService) { }
 
   ngOnInit() {
     this.loadTree();
-
+    this.sortBy = 0;
   }
 
 
@@ -45,26 +46,28 @@ listClick(event, newValue) {
     } );
   }
 
-  deleteTree()
+  deleteNode()
   {
-    this.nodeService.deleteTree(this.currentId).subscribe( (response: any) => {
+    this.nodeService.deleteNode(this.currentId).subscribe( (response: any) => {
       console.log(response);
+      this.loadTree();
     }, error => {
       console.log('Nie udało się usunąć węzłu');
     } );
 
-    this.loadTree();
+    this.ngOnInit();
   }
 
   changeParent()
   {
     this.nodeService.changeParent(this.currentId, this.newParrentId).subscribe( (respone : any) => {
       console.log(respone);
+      this.loadTree();
     }, error => {
       console.log('Nie udało się edytować rodzica');
     });
 
-    this.loadTree();
+
   }
 
   addNewNode()
@@ -72,10 +75,11 @@ listClick(event, newValue) {
    this.newNode.parentId = this.currentId;
     this.nodeService.addNode(this.newNode).subscribe( (response:any) => {
       console.log(response);
+      this.loadTree();
     }, error => {
       console.log('Nie udało sie dodać nowego węzła')
     });
-    this.loadTree();
+
 
   }
 
@@ -96,4 +100,8 @@ listClick(event, newValue) {
     console.log(this.currentId);
   }
 
+  checkRole()
+  {
+    return this.authService.checkRole();
+  }
 }

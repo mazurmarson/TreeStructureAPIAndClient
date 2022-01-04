@@ -26,11 +26,11 @@ login(model: any)
 {
 return this.http.post(this.baseUrl + 'login', model)
 .pipe(map( (response: any) => {
-  const worker = response;
-  if(worker)
+  const user = response;
+  if(user)
     {
-      localStorage.setItem('token', worker.token);
-      this.decodedToken = this.jwtHelper.decodeToken(worker.token);
+      localStorage.setItem('token', user.token);
+      this.decodedToken = this.jwtHelper.decodeToken(user.token);
 
     }
   } ));
@@ -51,23 +51,27 @@ editProfileByWorker(model: any)
 loggedIn()
 {
   const token = localStorage.getItem('token');
-
+  console.log(token);
   return !this.jwtHelper.isTokenExpired(token);
 }
 
 checkRole()
 {
+
+
   this.role = this.decodedToken?.role;
+
+
   return this.role;
 }
 
-getWorkerId():number
+getUserId():number
 {
   this.id = this.decodedToken?.nameid;
   return  Number(this.id);
 }
 
-async getWorkerIdAsync():Promise<number>
+async getWorkerIdUser():Promise<number>
 {
   this.id = await this.decodedToken?.nameid;
   return  Number(this.id);

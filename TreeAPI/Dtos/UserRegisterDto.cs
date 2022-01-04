@@ -11,6 +11,6 @@ namespace TreeAPI.Dtos
         public string  Mail { get; set; }
         public string Role { get; set; }
         public string Password { get; set; }
-        public string ConfirmPassowrd {get; set;}
+        public string ConfirmPassword {get; set;}
     }
 }

@@ -1,6 +1,7 @@
 import { HttpParams,HttpClient } from '@angular/common/http';
 import { getInterpolationArgsLength } from '@angular/compiler/src/render3/view/util';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ getTreeSorted(sortBy:number)
   return this.http.get(this.baseUrl+'/sort/'+sortBy);
 }
 
-deleteTree(id:number)
+deleteNode(id:number)
 {
   return this.http.delete(this.baseUrl +'/' + id);
 }

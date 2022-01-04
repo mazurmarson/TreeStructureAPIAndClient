@@ -30,6 +30,7 @@ namespace TreeAPI.Controllers
                 [HttpPost("register")]
         public async Task<IActionResult> Register(UserRegisterDto userRegisterDto)
         {
+            userRegisterDto.Role = "user";
             userRegisterDto.Name = userRegisterDto.Name.ToLower();
             if (await _service.UserIsExist(userRegisterDto.Name))
             {

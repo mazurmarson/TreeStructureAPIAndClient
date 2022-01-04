@@ -1,14 +1,15 @@
+<div *ngIf="this.checkRole() == 'admin'">
 <p>
 Aktualny wezeł {{ currentId }}
 <br/>
-<button (click)="deleteTree()"  class="btn btn-danger">Usuń aktualny węzeł</button>
+<button (click)="deleteNode()"  class="btn btn-danger">Usuń aktualny węzeł</button>
 <button (click)="resetCurrentNodeValue()"  class="btn btn-danger">Odznacz aktualny węzeł</button>
   </p>
 
  <form #changeParentForm="ngForm"  (ngSubmit)="changeParent()">
   <div class="form-group">
     Id nowego rodzica:
-    <input  #parrentId="ngModel" pattern="^[1-9][0-9]*$" required type="Text" class="form-control" placeholder="Data dodania" name="endDate"  [(ngModel)]="newParrentId">
+    <input  #parrentId="ngModel" pattern="^[1-9][0-9]*$" required type="Text" class="form-control" placeholder="Wartość rodzica" name="endDate"  [(ngModel)]="newParrentId">
 
     <div style="color:red;" *ngIf="parrentId.dirty">
         <p *ngIf="parrentId.errors?.pattern">Wartości muszą liczbą i być wyższe niż zero!</p>
@@ -24,7 +25,7 @@ Aktualny wezeł {{ currentId }}
     </div>
 
 </form>
-
+</div>
 
   <h1>Tree</h1>
   <button class="btn btn-primary" [class.btn-dark]="sortBy==0" (click)="this.sort(0)">Identyfikator</button>
@@ -41,6 +42,7 @@ Aktualny wezeł {{ currentId }}
   <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: tree }"></ng-container>
 </ul>
 
+<div *ngIf="this.checkRole() == 'admin'">
 <form #addNewNodeForm="ngForm"  (ngSubmit)="addNewNode()">
   <div class="form-group">
     Wartośc nowego węzłą:
@@ -58,3 +60,4 @@ Aktualny wezeł {{ currentId }}
 </div>
 
 </form>
+ </div>

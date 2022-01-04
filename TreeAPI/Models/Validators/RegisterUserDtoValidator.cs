@@ -12,7 +12,7 @@ namespace TreeAPI.Models.Validators
             RuleFor(x => x.Mail).EmailAddress().NotEmpty();
 
             RuleFor(x => x.Password).MinimumLength(6);
-            RuleFor(x => x.ConfirmPassowrd).Equal(e => e.Password).WithMessage("Wpisano dwa inne hasła");
+            RuleFor(x => x.ConfirmPassword).Equal(e => e.Password).WithMessage("Wpisano dwa inne hasła");
 
 
 
